@@ -255,8 +255,8 @@
 
 .card_type_film {
   background: url(../images/card-lot-01.jpg);
-  background-size: cover;
   background-position: center;
+  background-size: cover;
 }
 
 .card_type_book {
