@@ -85,7 +85,6 @@
   color: #fff;
   padding: 165px 50px 50px;
   position: relative;
-  z-index: -2;
 }
 
 .overlay {
@@ -96,7 +95,7 @@
   left: 0;
   top: 0;
   bottom: 0;
-  z-index: -1;
+  z-index: 1;
 }
 
 .cover__title {
@@ -124,6 +123,7 @@
   text-transform: uppercase;
   word-spacing: 17px;
   margin-right: 79px;
+  z-index: 2;
 }
 
 .cover__description-extended {
@@ -133,6 +133,7 @@
 .aligned-text {
   text-align: left;
   display: block;
+  z-index: 2;
 }
 
 .aligned-text_left {
@@ -141,7 +142,7 @@
 }
 
 .aligned-text_center {
-  padding: 0 32% 0 30%;
+  padding: 0 2% 0 0;
   justify-content: center;
   line-height: 120px;
   width: 100%;
@@ -171,6 +172,7 @@
   color: #fff;
   padding: 12px 32px;
   cursor: pointer;
+  z-index: 2;
 }
 
 /* -------------------------- */
@@ -191,15 +193,14 @@
 }
 
 .card {
-  height: inherit;
-  flex-grow: 1;
-  display: flex;
-
   padding: 50px 40px;
+  height: inherit;
+  display: flex;
   flex-direction: column;
   justify-content: space-between;
-  position: relative;
-  z-index: -2;
+  flex-grow: 1;
+  /* position: relative;  background-size: cover; не могут быть унаследованы, 
+  ДОКА ссылается на таблицу https://www.w3.org/TR/CSS22/propidx.html. */
 }
 
 .lots__card-list {
@@ -214,8 +215,8 @@
   flex-grow: 1;
   flex-shrink: 0;
   flex-basis: 0%;
-  min-height: 450px;
-  min-width: 430px;
+  height: 450px;
+  width: 430px;
 }
 
 .card-link {
@@ -228,23 +229,18 @@
   text-transform: uppercase;
   text-decoration: underline;
   text-decoration-skip-ink: none;
+  z-index: 2;
 }
 
 .card__text {
   font-size: 20px;
   font-weight: 400;
   line-height: 120%;
+  z-index: 2;
 }
 
 .lots__look-more-link {
   margin-left: 40px;
-  /* в ревью критичное замечание: 
-  "Хорошо, что использован margin, т.к. padding является частью элемента
-  (в данном случае ссылки/кнопки) 
-  и на него можно было бы нажать в пустом месте
-  (где его визуально нет)",
-  но что исправлять не понятно. 
-  Если нужно исправление,прошу сформулировать иначе*/
   color: #000;
   font-size: 20px;
   font-weight: 400;
@@ -254,20 +250,26 @@
 }
 
 .card_type_film {
-  background: url(../images/card-lot-01.jpg);
-  background-position: center;
-  background-size: cover;
+  background: url(../images/card-lot-01.jpg) center/cover;
+  /* Замечание "Общие стили нужно присвоить селектору .card" не может быть выполнено, 
+  так как в соответствии с документацией https://www.w3.org/TR/CSS22/propidx.html,
+  свойства position и background-size ненаследуемые.
+  Возможен вариант создания доп.класса card_image в index.html, 
+  только для фоновых изображений карточек с указанием в style.css
+  свойств "position: center;" и "background-size: cover", 
+  что может быть актуально при большом списке лотов. 
+  Правда удобство использования такой схемы под вопросом.
+  
+  В данном случае свойства переведены в шорткат, что сохраняет наглядность, 
+  при правильной организации документа */
 }
 
 .card_type_book {
-  background: url(../images/card-lot-02.jpg);
-  background-size: cover;
-  background-position: center;
+  background: url(../images/card-lot-02.jpg) center/cover;
 }
 
 .card_type_picture {
-  background: url(../images/card-lot-03.jpg);
-  background-size: cover;
+  background: url(../images/card-lot-03.jpg) center/cover;
 }
 
 /* -------------------------- */
