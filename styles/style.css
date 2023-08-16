@@ -199,6 +199,7 @@
   flex-direction: column;
   justify-content: space-between;
   flex-grow: 1;
+  position: relative;
   /* position: relative;  background-size: cover; не могут быть унаследованы, 
   ДОКА ссылается на таблицу https://www.w3.org/TR/CSS22/propidx.html. */
 }
